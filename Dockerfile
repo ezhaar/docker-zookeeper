@@ -9,7 +9,9 @@ RUN curl -o zookeeper-3.4.6.tar.gz http://apache.mirrors.spacedump.net/zookeeper
 RUN tar -xzf zookeeper-3.4.6.tar.gz 
 RUN rm zookeeper-3.4.6.tar.gz
 EXPOSE 2181
+ENV ZOOKEEPER_HOME /zookeeper-3.4.6
+ENV PATH $PATH:$ZOOKEEPER_HOME/bin
 WORKDIR /
 RUN cp /zookeeper-3.4.6/conf/zoo_sample.cfg /zookeeper-3.4.6/conf/zoo.cfg
-CMD ["/zookeeper-3.4.6/bin/zkServer.sh", "start-foreground"]
+CMD ["zkServer.sh", "start-foreground"]
 
